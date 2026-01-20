@@ -27,8 +27,11 @@ A lightweight and powerful **Batch** automation tool designed to streamline soft
 
 Using PowerShell, do the following command:
 
-`wget [https://raw.githubconsent.us](https://raw.githubusercontent.com/n3gox/Updat3r/refs/heads/main/update.bat) | iex`
+```powershell
+wget https://raw.githubusercontent.com/n3gox/Updat3r/refs/heads/main/update.bat | iex
+```
 
 Then the tool will be loaded automatically:
 
-<img width="521" height="327" alt="image" src="https://github.com/user-attachments/assets/8e9c2f01-d24f-4e56-8f6b-a6426f8758d5" />
+<img width="500" height="316" alt="image" src="https://github.com/user-attachments/assets/90730f3d-c1c8-495e-b23a-059ebc9f2d96" />
+
