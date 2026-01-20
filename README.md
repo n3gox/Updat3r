@@ -25,11 +25,9 @@ A lightweight and powerful **Batch** automation tool designed to streamline soft
 
 ## 🚀 Usage (Fileless Mode)
 
-Using PowerShell, do the following command:
+1. Download the script from the repository
 
-```powershell
-wget https://raw.githubusercontent.com/n3gox/Updat3r/refs/heads/main/update.bat | iex
-```
+2. Save it locally and right click **Run as Adminsitrator**
 
 Then the tool will be loaded automatically:
 
