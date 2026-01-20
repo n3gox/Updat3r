@@ -1,12 +1,12 @@
 @echo off
 chcp 65001 >nul
 SETLOCAL EnableDelayedExpansion
-title Gestor de Actualizaciones Winget Pro
+title Winget Pro Update Manager
 
-:: Generar el carácter de escape real (ESC) de forma dinámica
+:: Generate real escape character (ESC) dynamically
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do set "ESC=%%b"
 
-:: Definición de colores usando el carácter generado
+:: Color definitions using the generated character
 set "reset=%ESC%[0m"
 set "bold=%ESC%[1m"
 set "cyan=%ESC%[36m"
@@ -16,10 +16,10 @@ set "red=%ESC%[31m"
 set "white=%ESC%[97m"
 set "bg_blue=%ESC%[44m"
 
-:: Verificar permisos de administrador
+:: Check for administrator privileges
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo %red%[ERROR] Por favor, ejecuta este script como ADMINISTRADOR.%reset%
+    echo %red%[ERROR] Please run this script as ADMINISTRATOR.%reset%
     pause
     exit /b
 )
@@ -27,32 +27,32 @@ if %errorLevel% neq 0 (
 :menu
 cls
 echo %cyan%============================================================%reset%
-echo %white%%bg_blue%           BUSCANDO ACTUALIZACIONES DISPONIBLES           %reset%
+echo %white%%bg_blue%            CHECKING FOR AVAILABLE UPDATES              %reset%
 echo %cyan%============================================================%reset%
 echo.
 
-:: Ejecutar winget upgrade
+:: Execute winget upgrade
 winget upgrade
 
 if %errorLevel% neq 0 (
     echo.
     echo %yellow%------------------------------------------------------------%reset%
-    echo %green%[INFO] Tu sistema está al día o no se encontraron cambios.%reset%
+    echo %green%[INFO] Your system is up to date or no changes were found.%reset%
     echo %yellow%------------------------------------------------------------%reset%
     pause
     exit /b
 )
 
 echo.
-echo %bold%%white%¿QUÉ DESEAS HACER?%reset%
+echo %bold%%white%WHAT WOULD YOU LIKE TO DO?%reset%
 echo %cyan%------------------------------------------------------------%reset%
-echo  [%green%1%reset%] %green%Actualizar TODO%reset%
-echo  [%yellow%2%reset%] %yellow%Elegir un programa específico%reset%
-echo  [%red%3%reset%] %red%Salir%reset%
+echo  [%green%1%reset%] %green%Update EVERYTHING%reset%
+echo  [%yellow%2%reset%] %yellow%Choose a specific program%reset%
+echo  [%red%3%reset%] %red%Exit%reset%
 echo %cyan%------------------------------------------------------------%reset%
 echo.
 
-set /p opt="%bold%Selecciona una opción (1, 2 o 3): %reset%"
+set /p opt="%bold%Select an option (1, 2 or 3): %reset%"
 
 if "%opt%"=="1" goto update_all
 if "%opt%"=="2" goto update_id
@@ -61,26 +61,26 @@ goto menu
 
 :update_all
 echo.
-echo %yellow%[PROCESO]%reset% Actualizando todo...
+echo %yellow%[PROCESS]%reset% Updating everything...
 winget upgrade --all --include-unknown
 echo.
 echo %green%============================================================%reset%
-echo %green%[OK] ¡Actualización masiva completada!%reset%
+echo %green%[OK] Bulk update completed successfully!%reset%
 pause
 goto menu
 
 :update_id
 echo.
-set /p id="%white%Escribe el %bold%ID%reset%%white% del programa: %reset%"
+set /p id="%white%Type the program %bold%ID%reset%%white%: %reset%"
 if "%id%"=="" (
-    echo %red%[ERROR] ID no válido.%reset%
+    echo %red%[ERROR] Invalid ID.%reset%
     pause
     goto menu
 )
 echo.
-echo %yellow%[PROCESO]%reset% Actualizando: %cyan%%id%%reset%...
+echo %yellow%[PROCESS]%reset% Updating: %cyan%%id%%reset%...
 winget upgrade --id "%id%"
 echo.
-echo %green%[OK] Proceso finalizado.%reset%
+echo %green%[OK] Process finished.%reset%
 pause
 goto menu
