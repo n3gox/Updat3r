@@ -25,9 +25,12 @@ A lightweight and powerful **Batch** automation tool designed to streamline soft
 
 ## 🚀 Usage (Fileless Mode)
 
-1. Download the script from the repository
+1. Open a CMD as **Administrator**
+2. Execute the following one liner command:
 
-2. Save it locally and right click **Run as Adminsitrator**
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$path = [System.IO.Path]::GetTempFileName() + '.bat'; (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/n3gox/Updat3r/refs/heads/main/update.bat', $path); Start-Process cmd -Wait -ArgumentList '/c', $path; Remove-Item $path"
+```
 
 Then the tool will be loaded automatically:
 
